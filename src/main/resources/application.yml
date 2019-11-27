@@ -1,0 +1,16 @@
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai
+    data-username: root
+    data-password: root
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+server:
+  servlet:
+    context-path: /OHS

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="button">测试传值</button>
+<span id="tag"></span>
+<script src="js/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+    $("#button").click(function () {
+        $.ajax({
+            url: "helloAjax",
+            type: "post",
+            datatype: "json",
+            contentType:'application/json;charset=utf-8',
+            data: JSON.stringify({"code":200,"msg":'测试ajax'}),
+            success: function (result) {
+                if (result.code == 200) {
+                    $("#tag").html(result.msg);
+                } else {
+                    console.log("ajax返回错误");
+                }
+            },
+            error:function (result) {
+                console.log(result);
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
