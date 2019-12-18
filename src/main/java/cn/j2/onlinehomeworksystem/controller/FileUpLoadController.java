@@ -14,7 +14,7 @@ import java.util.UUID;
 @RestController
 public class FileUpLoadController {
     @RequestMapping("/fileUpLoad")
-    public Result upLoad(MultipartFile word) throws IOException {
+    public Result upLoad(MultipartFile word) {
         Result result = new Result();
         if(word!=null){
             try {
@@ -31,7 +31,7 @@ public class FileUpLoadController {
                 }
             }catch(Exception e){
                 result.setCode(500);
-                result.setMsg("文件上传时出错");
+                result.setMsg(e.getMessage());
             }
         }else {
             result.setCode(500);

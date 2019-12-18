@@ -16,7 +16,12 @@ public class GradeManageController {
     @RequestMapping("/addGradeInfo")
     public Result addGradeInfo(Grade grade){
         Result result = new Result();
-        gradeManageService.addGradeInfo(grade);
+        try {
+            gradeManageService.addGradeInfo(grade);
+        }catch (Exception e){
+            result.setCode(500);
+            result.setMsg(e.getMessage());
+        }
         return result;
     }
 }

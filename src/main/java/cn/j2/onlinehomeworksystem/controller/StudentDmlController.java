@@ -18,12 +18,17 @@ public class StudentDmlController {
     @RequestMapping("/addStudent")
     public Result addStudent(Students student){
         Result result = new Result();
-        if(stDmlService.addStudent(student)>0){
-            result.setCode(200);
-            result.setMsg("添加成功");
-        } else{
+        try {
+            if (stDmlService.addStudent(student) > 0) {
+                result.setCode(200);
+                result.setMsg("添加成功");
+            } else {
+                result.setCode(500);
+                result.setMsg("添加失败");
+            }
+        }catch(Exception e){
+            result.setMsg(e.getMessage());
             result.setCode(500);
-            result.setMsg("添加失败");
         }
         return result;
     }
@@ -31,12 +36,17 @@ public class StudentDmlController {
     @RequestMapping("/deleteStudent")
     public Result deleteStudent(int sid){
         Result result = new Result();
-        if(stDmlService.deleteStudent(sid)>0){
-            result.setCode(200);
-            result.setMsg("删除成功");
-        } else{
+        try {
+            if (stDmlService.deleteStudent(sid) > 0) {
+                result.setCode(200);
+                result.setMsg("删除成功");
+            } else {
+                result.setCode(500);
+                result.setMsg("删除失败");
+            }
+        }catch(Exception e){
+            result.setMsg(e.getMessage());
             result.setCode(500);
-            result.setMsg("删除失败");
         }
         return result;
     }
@@ -44,12 +54,17 @@ public class StudentDmlController {
     @RequestMapping("/updateStudent")
     public Result updateStudent(Students student){
         Result result = new Result();
-        if(stDmlService.updateStudent(student)>0){
-            result.setCode(200);
-            result.setMsg("修改成功");
-        } else{
+        try {
+            if (stDmlService.updateStudent(student) > 0) {
+                result.setCode(200);
+                result.setMsg("修改成功");
+            } else {
+                result.setCode(500);
+                result.setMsg("修改失败");
+            }
+        }catch(Exception e){
             result.setCode(500);
-            result.setMsg("修改失败");
+            result.setMsg(e.getMessage());
         }
         return result;
     }
@@ -57,14 +72,19 @@ public class StudentDmlController {
     @RequestMapping("/selectStudent")
     public Result selectStudent(Students student){
         Result result = new Result();
-        List<Students> list = stDmlService.selectStudent(student);
-        if(list!=null){
-            result.setCode(200);
-            result.setMsg("搜索成功");
-            result.setData(list);
-        } else {
+        try {
+            List<Students> list = stDmlService.selectStudent(student);
+            if (list != null) {
+                result.setCode(200);
+                result.setMsg("搜索成功");
+                result.setData(list);
+            } else {
+                result.setCode(500);
+                result.setMsg("搜索失败或无目标信息");
+            }
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
             result.setCode(500);
-            result.setMsg("搜索失败或无目标信息");
         }
 //        request.setAttribute("list",list);
         return result;
