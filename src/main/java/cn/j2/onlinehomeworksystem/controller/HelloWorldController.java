@@ -3,7 +3,6 @@ package cn.j2.onlinehomeworksystem.controller;
 import cn.j2.onlinehomeworksystem.entity.Result;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

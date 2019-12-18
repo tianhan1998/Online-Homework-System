@@ -11,6 +11,7 @@ spring:
     data-password: root
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: cn.j2.onlinehomeworksystem.entity
 server:
   servlet:
     context-path: /OHS

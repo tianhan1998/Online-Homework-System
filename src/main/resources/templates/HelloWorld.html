@@ -11,11 +11,11 @@
 <script type="text/javascript">
     $("#button").click(function () {
         $.ajax({
-            url: "helloAjax",
+            url: "student/selectStudent",
             type: "post",
             datatype: "json",
-            contentType:'application/json;charset=utf-8',
-            data: JSON.stringify({"code":200,"msg":'测试ajax'}),
+            // contentType:'application/json;charset=utf-8',
+            // data: JSON.stringify({"code":200,"msg":'测试ajax'}),
             success: function (result) {
                 if (result.code == 200) {
                     $("#tag").html(result.msg);
