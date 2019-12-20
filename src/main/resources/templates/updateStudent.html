@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Veltrix - Admin Dashboard Template | Themesbrand</title>
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link href="plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/icons.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+
+        <!-- page wrapper start -->
+        <div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title">修改学生</h4>
+                                <form id="form1" class="needs-validation" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="validationCustom01">学生姓名</label>
+                                                <input type="text" class="form-control" name="sname" id="validationCustom01" placeholder="姓名" required>
+                                                <div class="valid-feedback">
+                                                    请填写学生姓名
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01">性别</label>
+                                            <div class="custom-control custom-radio mb-2">
+                                                <input type="radio" id="customRadio1" name="sex" value="男" checked="" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio1">男</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" value="女" name="sex" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio2">女</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="validationCustom03">学校</label>
+                                                <input type="text" class="form-control" name="college" id="validationCustom03" placeholder="学校" required>
+                                                <div class="invalid-feedback">
+                                                    请填写学校名称
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="validationCustom04">班级名称</label>
+                                                <input type="text" class="form-control" name="classname" id="validationCustom04" placeholder="班级" required>
+                                                <div class="invalid-feedback">
+                                                   请填写班级名称
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="validationCustom05">手机</label>
+                                                <input type="text" class="form-control" name="number" id="validationCustom05" placeholder="手机" required>
+                                                <div class="invalid-feedback">
+                                                    请填写手机号码
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="submit" class="btn btn-primary" type="button">修改</button>
+                                    <input name="sid" th:value="${sid}" type="hidden"/>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div> <!-- end col -->
+
+                </div>
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- page wrapper end -->
+
+
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        2019 © Veltrix <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <!-- jQuery  -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.slimscroll.js"></script>
+        <script src="js/waves.min.js"></script>
+        <script src="plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="pages/sweet-alert.init.js"></script>
+        <!-- App js -->
+        <script src="js/app.js"></script>
+        <script>
+            $("#submit").click(function(){
+                if($("input[name='sname']").val()!="") {
+                    if ($("input[name='college']").val() != "") {
+                        if ($("input[name='classname']").val() != "") {
+                            if ($("input[name='number']").val() != "") {
+                                $.ajax({
+                                    url:'student/updateStudent',
+                                    type:'post',
+                                    datatype:'json',
+                                    data:$("#form1").serialize(),
+                                    success:function(result){
+                                        if(result.code==200){
+                                            window.setTimeout("window.close()",1800);
+                                            Swal.fire({
+                                                position: 'top-end',
+                                                type: 'success',
+                                                title: '修改成功',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+                                        }else{
+                                            swalWithBootstrapButtons.fire(
+                                                '修改失败',
+                                                result.msg,
+                                                'error'
+                                            );
+                                        }
+                                    },
+                                    error:function(result){
+                                        console.log(result);
+                                    }
+                                });
+                            } else {
+                                swalWithBootstrapButtons.fire(
+                                    '修改失败',
+                                    "电话不能为空",
+                                    'error'
+                                );
+                            }
+                        } else {
+                            swalWithBootstrapButtons.fire(
+                                '修改失败',
+                                "班级不能为空",
+                                'error'
+                            );
+                        }
+                    } else {
+                        swalWithBootstrapButtons.fire(
+                            '修改失败',
+                            "学校不能为空",
+                            'error'
+                        );
+                    }
+                }else {
+                    swalWithBootstrapButtons.fire(
+                        '修改失败',
+                        "姓名不能为空",
+                        'error'
+                    );
+                }
+            });
+            $(function () {
+                var id=$("input[name='sid']").val();
+                $.ajax({
+                    url:'student/findUpdateStudent/'+id,
+                    type:'get',
+                    datatype:'json',
+                    success:function(result){
+                        $("input[name='sid']").val(result.data.sid);
+                        $("input[name='sname']").val(result.data.sname);
+                        $("input[name='college']").val(result.data.college);
+                        $("input[name='classname']").val(result.data.classname);
+                        $("input[name='number']").val(result.data.number);
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
+            });
+
+        </script>
+    </body>
+
+</html>

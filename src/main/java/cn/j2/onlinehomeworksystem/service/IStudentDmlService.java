@@ -12,5 +12,7 @@ public interface IStudentDmlService {
 
     int updateStudent(Students student);
 
+    Students findStudentById(Integer id);
+
     List<Students> selectStudent(Students student);
 }

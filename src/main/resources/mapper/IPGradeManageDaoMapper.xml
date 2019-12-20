@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.j2.onlinehomeworksystem.mapper.IPGradeManageDaoMapper">
+    <select id="selectPGrade" resultType="PGrade">
+        select * from p_grade
+        <where>
+            <if test="student.sid!=null">
+                and sid=#{student.sid}
+            </if>
+            <if test="student.sname !=null and student.sname!=''">
+                and sname=#{student.sname}
+            </if>
+            <if test="student.sex !=null and student.sex!=''">
+                and sex=#{sex}
+            </if>
+            <if test="student.classname !=null and student.classname!=''">
+                and classname=#{student.classname}
+            </if>
+            <if test="cname !=null and cname!=''">
+                and cname=#{cname}
+            </if>
+            <if test="minUGrade != null">
+                and ugrade>#{minUGrade}
+            </if>
+            <if test="maxUGrade != null">
+                and ugrade&lt;#{maxUGrade}
+            </if>
+            <if test="minFGrade != null">
+                and fgrade>#{minFGrade}
+            </if>
+            <if test="maxFGrade != null">
+                and fgrade&lt;#{maxFGrade}
+            </if>
+            <if test="minTGrade != null">
+                and tgrade>#{minTGrade}
+            </if>
+            <if test="maxTGrade != null">
+                and tgrade&lt;#{maxTGrade}
+            </if>
+        </where>
+    </select>
+</mapper>

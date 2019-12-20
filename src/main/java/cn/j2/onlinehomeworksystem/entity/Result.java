@@ -1,10 +1,10 @@
 package cn.j2.onlinehomeworksystem.entity;
 
-
 public class Result {
     private String msg;
     private Integer code;
     private Object data;
+
 
     public Result() {
     }

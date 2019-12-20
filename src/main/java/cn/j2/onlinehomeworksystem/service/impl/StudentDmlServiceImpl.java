@@ -24,6 +24,11 @@ public class StudentDmlServiceImpl implements IStudentDmlService {
     }
 
     @Override
+    public Students findStudentById(Integer id) {
+        return stDmlDao.findStudentById(id);
+    }
+
+    @Override
     public int updateStudent(Students student) {
         return stDmlDao.updateStudent(student);
     }

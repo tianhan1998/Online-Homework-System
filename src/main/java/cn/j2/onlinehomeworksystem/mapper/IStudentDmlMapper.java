@@ -14,5 +14,7 @@ public interface IStudentDmlMapper {
 
     int updateStudent(Students student);
 
+    Students findStudentById(Integer id);
+
     List<Students> selectStudent(Students student);
 }

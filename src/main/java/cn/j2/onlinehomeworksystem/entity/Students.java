@@ -1,7 +1,7 @@
 package cn.j2.onlinehomeworksystem.entity;
 
 public class Students {
-    private int sid;
+    private Integer sid;
     private String sname;
     private String sex;
     private String college;
@@ -11,7 +11,7 @@ public class Students {
     public Students() {
     }
 
-    public Students(int sid, String sname, String sex, String college, String classname, String number) {
+    public Students(Integer sid, String sname, String sex, String college, String classname, String number) {
         this.sid = sid;
         this.sname = sname;
         this.sex = sex;
@@ -20,11 +20,11 @@ public class Students {
         this.number = number;
     }
 
-    public int getSid() {
+    public Integer getSid() {
         return sid;
     }
 
-    public void setSid(int sid) {
+    public void setSid(Integer sid) {
         this.sid = sid;
     }
 

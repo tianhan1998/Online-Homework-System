@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.j2.onlinehomeworksystem.mapper.IGradeManageDaoMapper">
+    <insert id="addGradeInfo">
+        insert into grade(sid,sname,cname,ugrade,fgrade,tgrade) values(#{sid},#{sname},#{cname},#{ugrade},#{fgrade},#{tgrade})
+    </insert>
+
+    <delete id="deleteGradeInfo">
+        delete from grade where 1=1
+        <if test="sid!=null">
+             and sid = #{sid}
+        </if>
+        <if test="cname!='' and cname!=null">
+             and cname = #{cname}
+        </if>
+    </delete>
+
+    <select id="selectGradeInfo" resultType="Grade">
+        select * from grade
+        <where>
+            <if test="sid!=null">
+                and sid=#{sid}
+            </if>
+            <if test="cname !=null and cname!=''">
+                and cname=#{cname}
+            </if>
+            <if test="minUGrade != null">
+                and ugrade>#{minUGrade}
+            </if>
+            <if test="maxUGrade != null">
+                and ugrade&lt;#{maxUGrade}
+            </if>
+            <if test="minFGrade != null">
+                and fgrade>#{minFGrade}
+            </if>
+            <if test="maxFGrade != null">
+                and fgrade&lt;#{maxFGrade}
+            </if>
+            <if test="minTGrade != null">
+                and tgrade>#{minTGrade}
+            </if>
+            <if test="maxTGrade != null">
+                and tgrade&lt;#{maxTGrade}
+            </if>
+        </where>
+    </select>
+
+</mapper>
