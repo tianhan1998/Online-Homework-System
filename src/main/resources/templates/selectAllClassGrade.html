@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Veltrix - Admin Dashboard Template | Themesbrand</title>
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link href="plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/icons.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header-bg">
+    <!-- Navigation Bar-->
+    <header id="topnav">
+        <div class="topbar-main">
+            <div class="container-fluid">
+
+                <div class="menu-extras topbar-custom">
+
+                    <ul class="navbar-right list-inline float-right mb-0">
+
+                        <!-- full screen -->
+                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                            <a class="nav-link" href="#" id="btn-fullscreen">
+                                <i class="ion ion-md-qr-scanner noti-icon"></i>
+                            </a>
+                        </li>
+
+
+                        <li class="dropdown notification-list list-inline-item">
+                            <div class="dropdown notification-list nav-pro-img">
+                                <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <img src="images/users/user-4.jpg" alt="user" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li class="menu-item list-inline-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- end menu-extras -->
+
+                <div class="clearfix"></div>
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end topbar-main -->
+
+
+        <!-- MENU Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+
+                        <li class="has-submenu">
+                            <a href="/OHS/"><i class="ion ion-md-speedometer"></i>Dashboard</a>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="ion ion-md-options"></i>信息查询 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                            <ul class="submenu">
+                                <li class="has-submenu">
+                                    <a href="#">学生信息</a>
+                                    <ul class="submenu">
+                                        <li><a href="/OHS/selectAllStudent">查询所有学生信息</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="#">班级信息</a>
+                                    <ul class="submenu">
+                                        <li><a href="/OHS/selectAllClass">查询所有班级信息</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="#">课程信息</a>
+                                    <ul class="submenu">
+                                        <li><a href="/OHS/selectAllCourse">查询所有课程信息</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="ion ion-md-options"></i>成绩 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                            <ul class="submenu">
+                                <li><a href="/OHS/selectPersonGrade">查询成绩</a></li>
+                                <li><a href="/OHS/selectAllClassGrade">查询班级总成绩</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="ion ion-md-options"></i>上传系统 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                            <ul class="submenu">
+                                <li class="has-submenu">
+                                    <a href="#">作业</a>
+                                    <ul class="submenu">
+                                        <li><a href="/OHS/uploadHomework">作业提交系统 </a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="#">查重</a>
+                                    <ul class="submenu">
+                                        <li><a href="/OHS/checkUploadHomework">作业查重系统</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- End navigation menu -->
+                </div> <!-- end #navigation -->
+            </div> <!-- end container -->
+        </div> <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+            </div> <!-- end col -->
+        </div> <!-- end row-->
+    </div>
+</div>
+<!-- end header-bg -->
+
+<!-- page wrapper start -->
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="mt-0 header-title">班级分数统计</h4>
+                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div>
+    <!-- end container-fluid -->
+</div>
+<!-- page wrapper end -->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                2019 © Veltrix <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+
+<!-- jQuery  -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.slimscroll.js"></script>
+<script src="js/waves.min.js"></script>
+<!-- Required datatable js -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+<script src="plugins/datatables/jszip.min.js"></script>
+<script src="plugins/datatables/pdfmake.min.js"></script>
+<script src="plugins/datatables/vfs_fonts.js"></script>
+<script src="plugins/datatables/buttons.html5.min.js"></script>
+<script src="plugins/datatables/buttons.print.min.js"></script>
+<script src="plugins/datatables/buttons.colVis.min.js"></script>
+<!-- Responsive examples -->
+<script src="plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="pages/datatables.init.js"></script>
+<!-- App js -->
+<script src="js/app.js"></script>
+<script src="plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script src="pages/sweet-alert.init.js"></script>
+<script>
+    // $(function () {
+    var datatable;
+    datatable=$("#datatable").DataTable({
+        "processing":true,
+        "searching":true,
+        "destroy":true,
+        "ajax":{
+            "url":"classGrade/selectAllClassGrade",
+        },
+        "columns":[
+            { "data": "classid",title:"班级号" },
+            { "data": "classname",title:"班级名称" },
+            { "data": "ugrade",title:"班级总平时成绩" },
+            { "data": "uavgrade",title:"班级平均平时成绩" },
+            { "data": "fgrade",title:"班级总期末成绩" },
+            { "data": "favgrade",title:"班级平均期末成绩" },
+            { "data": "tgrade",title:"班级总成绩" },
+            { "data": "tavgrade",title:"班级平均总成绩" },
+        ]
+    });
+      $.ajax({
+            url:'classGrade/deleteAllClassGrade',
+            type:'get',
+            datatype:'json',
+            success:function(result){
+                if(result.code==200){
+                      $.ajax({
+                            url:'classGrade/classGradeCompute',
+                            type:'get',
+                            datatype:'json',
+                            success:function(result){
+                                if(result.code==200){
+                                    if(datatable){
+                                        datatable.clear();
+                                    }
+                                    datatable=$("#datatable").DataTable({
+                                        "processing":true,
+                                        "searching":true,
+                                        "destroy":true,
+                                        "ajax":{
+                                            "url":"classGrade/selectAllClassGrade",
+                                        },
+                                        "columns":[
+                                            { "data": "classid",title:"班级号" },
+                                            { "data": "classname",title:"班级名称" },
+                                            { "data": "ugrade",title:"班级总平时成绩" },
+                                            { "data": "uavgrade",title:"班级平均平时成绩" },
+                                            { "data": "fgrade",title:"班级总期末成绩" },
+                                            { "data": "favgrade",title:"班级平均期末成绩" },
+                                            { "data": "tgrade",title:"班级总成绩" },
+                                            { "data": "tavgrade",title:"班级平均总成绩" },
+                                        ]
+                                    });
+                                }else{
+                                    console.log(result);
+                                }
+                            },
+                            error:function(result){
+                              console.log(result);
+                            }
+                       });
+                }else{
+                    console.log(result);
+                }
+            },
+            error:function(result){
+              console.log(result);
+            }
+       });
+
+    //     $.ajax({
+    //         url:'student/selectStudent',
+    //         type:'get',
+    //         datatype:'json',
+    //         success:function(result){
+    //             /*
+    //             sid: 1701002
+    //             sname: "李四"
+    //             sex: "男"​
+    //             college: "安阳师范学院"​
+    //             classname: "17java1"
+    //             number: "13745612312"​​
+    //              */
+    //             for(var i=1;i<result.data.length+1;i++) {
+    //                 var html = "<tr>\n" +
+    //                     "<th scope=\"row\">"+i+"</th>\n" +
+    //                     "<td>"+result.data[i].sid+"</td>\n" +
+    //                     "<td>"+result.data[i].sname+"</td>\n" +
+    //                     "<td>"+result.data[i].sex+"</td>\n" +
+    //                     "<td>"+result.data[i].college+"</td>\n" +
+    //                     "<td>"+result.data[i].classname+"</td>\n" +
+    //                     "<td>"+result.data[i].number+"</td>\n" +
+    //                     "</tr>";
+    //                 $("#table-body").append(html);
+    //             }
+    //         },
+    //         error:function(result){
+    //             console.log(result);
+    //         }
+    //     });
+    // });
+</script>
+
+</body>
+
+</html>

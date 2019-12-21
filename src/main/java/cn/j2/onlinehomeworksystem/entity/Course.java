@@ -4,9 +4,9 @@ public class Course {
     private Integer cid;
     private String cname;
     private Integer hour;
-    private double credit;
+    private Double credit;
 
-    public Course(Integer cid, String cname, Integer hour, double credit) {
+    public Course(Integer cid, String cname, Integer hour, Double credit) {
         this.cid = cid;
         this.cname = cname;
         this.hour = hour;
@@ -37,7 +37,7 @@ public class Course {
         this.hour = hour;
     }
 
-    public double getCredit() {
+    public Double getCredit() {
         return credit;
     }
 

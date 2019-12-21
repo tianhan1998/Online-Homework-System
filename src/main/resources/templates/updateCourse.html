@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Veltrix - Admin Dashboard Template | Themesbrand</title>
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link href="plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/icons.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+
+        <!-- page wrapper start -->
+        <div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title">修改课程</h4>
+                                <form id="form1" class="needs-validation" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="validationCustom01">课程名称</label>
+                                                <input type="text" class="form-control" name="cname" id="validationCustom0" placeholder="课程名称" required>
+                                                <div class="valid-feedback">
+                                                    请填写课程名称
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="validationCustom01">课程学时</label>
+                                                <input type="text" class="form-control" name="hour" id="validationCustom01" placeholder="学时" required>
+                                                <div class="valid-feedback">
+                                                    请填写课程学时
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="validationCustom01">课程学分</label>
+                                                <input type="text" class="form-control" name="credit" id="validationCustom" placeholder="学分" required>
+                                                <div class="valid-feedback">
+                                                    请填写课程学分
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="submit" class="btn btn-primary" type="button">修改</button>
+                                    <input name="cid" th:value="${cid}" type="hidden"/>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div> <!-- end col -->
+
+                </div>
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- page wrapper end -->
+
+
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        2019 © Veltrix <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <!-- jQuery  -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.slimscroll.js"></script>
+        <script src="js/waves.min.js"></script>
+        <script src="plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="pages/sweet-alert.init.js"></script>
+        <!-- App js -->
+        <script src="js/app.js"></script>
+        <script>
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger mr-2'
+                },
+                buttonsStyling: false,
+            });
+            $("#submit").click(function(){
+                if ($("input[name='cname']").val() != "") {
+                    if ($("input[name='hour']").val() != "") {
+                        if ($("input[name='credit']").val() != "") {
+                            $.ajax({
+                                url: 'course/updateCourse',
+                                type: 'post',
+                                datatype: 'json',
+                                data: $("#form1").serialize(),
+                                success: function (result) {
+                                    if (result.code == 200) {
+                                        window.setTimeout("window.close()", 1800);
+                                        Swal.fire({
+                                            position: 'top-end',
+                                            type: 'success',
+                                            title: '修改成功',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    } else {
+                                        swalWithBootstrapButtons.fire(
+                                            '修改失败',
+                                            result.msg,
+                                            'error'
+                                        );
+                                    }
+                                },
+                                error: function (result) {
+                                    console.log(result);
+                                }
+                            });
+                        }else{
+                            swalWithBootstrapButtons.fire(
+                                '修改失败',
+                                "学分不能为空",
+                                'error'
+                            );
+                        }
+                    }else{
+                        swalWithBootstrapButtons.fire(
+                            '修改失败',
+                            "学时不能为空",
+                            'error'
+                        );
+                    }
+                } else {
+                    swalWithBootstrapButtons.fire(
+                        '修改失败',
+                        "课程名不能为空",
+                        'error'
+                    );
+                }
+            });
+            $(function () {
+                var id=$("input[name='cid']").val();
+                $.ajax({
+                    url:'course/selectByIdCourse',
+                    type:'get',
+                    datatype:'json',
+                    data:{"cid":id},
+                    success:function(result){
+                        $("input[name='cname']").val(result.data.cname);
+                        $("input[name='hour']").val(result.data.hour);
+                        $("input[name='credit']").val(result.data.credit);
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
+            });
+
+        </script>
+    </body>
+
+</html>

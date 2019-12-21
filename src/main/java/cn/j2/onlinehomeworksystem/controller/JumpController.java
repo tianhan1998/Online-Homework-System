@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class JumpController {
-    @GetMapping("/hello")
-    public String jumpHelloWorld(){
-        return "HelloWorld";
-    }
     @GetMapping("/")
     public String index(){
         return "index";
@@ -23,9 +19,31 @@ public class JumpController {
         m.addAttribute("sid",sid);
         return "updateStudent";
     }
-    @GetMapping("/delete")
-    public String jumpDelete() {
-        return "delete";
+    @GetMapping("/updateClass")
+    public String jumpUpdateClass(Integer classid, Model m){
+        m.addAttribute("classid",classid);
+        return "updateClass";
+    }
+    @GetMapping("/updateCourse")
+    public String jumpUpdateCourse(Integer cid, Model m){
+        m.addAttribute("cid",cid);
+        return "updateCourse";
+    }
+    @GetMapping("/insertClass")
+    public String insertClass(){
+        return "insertClass";
+    }
+    @GetMapping("/insertCourse")
+    public String insertCourse(){
+        return "insertCourse";
+    }
+    @GetMapping("/selectPersonGrade")
+    public String jumpSelectPersonGrade(){
+        return "selectPersonGrade";
+    }
+    @GetMapping("/selectAllCourse")
+    public String jumpSAC(){
+        return "selectAllCourse";
     }
     @GetMapping("/insertStudent")
     public String jumpInsertStudent(){
@@ -38,5 +56,21 @@ public class JumpController {
     @GetMapping("/welcome")
     public String jumpWelcome(){
         return "welcome";
+    }
+    @GetMapping("/selectAllClass")
+    public String jumpSAClass(){
+        return "selectAllClass";
+    }
+    @GetMapping("/uploadHomework")
+    public String jumpUploadHomework(){
+        return "homeworkUpload";
+    }
+    @GetMapping("/checkUploadHomework")
+    public String checkUPW(){
+        return "checkHomeworkUpload";
+    }
+    @GetMapping("/selectAllClassGrade")
+    public String selectAllClassGrade(){
+        return "selectAllClassGrade";
     }
 }

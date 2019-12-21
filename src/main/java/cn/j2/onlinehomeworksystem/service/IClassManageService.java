@@ -4,7 +4,13 @@ import java.util.List;
 import cn.j2.onlinehomeworksystem.entity.Class;
 
 public interface IClassManageService {
-    List<Class> selectAllClassGrade();
+    List selectAllClass();
 
-    Class selectOneClassGrade(Integer classid);
+    Class selectOneClass(Integer classid);
+
+    int deleteClass(Class aclass);
+
+    int updateClass(Class aclass);
+
+    int addClass(Class aclass);
 }

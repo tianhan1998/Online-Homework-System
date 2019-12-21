@@ -1,32 +1,34 @@
 package cn.j2.onlinehomeworksystem.controller;
 
 import cn.j2.onlinehomeworksystem.entity.Class;
+import cn.j2.onlinehomeworksystem.entity.Course;
 import cn.j2.onlinehomeworksystem.entity.Result;
-import cn.j2.onlinehomeworksystem.entity.Students;
-import cn.j2.onlinehomeworksystem.service.IClassManageService;
+import cn.j2.onlinehomeworksystem.service.ICourseManageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/class")
-public class ClassManageController {
+@RequestMapping("/course")
+public class CourseManageController {
     @Autowired
-    private IClassManageService classManageService;
+    private ICourseManageService courseManageService;
 
-    @RequestMapping("/selectAllClass")
-    public Result selectAllClass(){
+    @RequestMapping("/selectAllCourse")
+    public Result selectAllCourse(){
         Result result = new Result();
         try{
-            List<Class> classList= classManageService.selectAllClass();
-            if(classList!=null){
+            List<Course> courseList= courseManageService.selectAllCourse();
+            if(courseList!=null){
                 result.setCode(200);
-                result.setMsg("查询成功");
-                result.setData(classList);
+                result.setMsg("查询课程成功");
+                result.setData(courseList);
             }else {
                 result.setCode(500);
-                result.setMsg("查询失败");
+                result.setMsg("查询课程失败");
             }
         }catch (Exception e){
             result.setCode(500);
@@ -35,18 +37,19 @@ public class ClassManageController {
         return result;
     }
 
-    @RequestMapping("/selectOneClass")
-    public Result selectOneClass(Integer classid){
+    @RequestMapping("/selectByIdCourse")
+    public Result selectByIdCourse(Integer cid){
         Result result = new Result();
+        System.out.println(cid);
         try{
-            Class c= classManageService.selectOneClass(classid);
-            if(c!=null){
+            Course course = courseManageService.selectCourseById(cid);
+            if(course!=null){
                 result.setCode(200);
-                result.setMsg("查询成功");
-                result.setData(c);
+                result.setMsg("查询课程成功");
+                result.setData(course);
             }else {
                 result.setCode(500);
-                result.setMsg("查询失败");
+                result.setMsg("查询课程失败");
             }
         }catch (Exception e){
             result.setCode(500);
@@ -54,12 +57,12 @@ public class ClassManageController {
         }
         return result;
     }
-
-    @RequestMapping("/deleteClass")
-    public Result deleteClass(Class aclass){
+    @RequestMapping("/deleteCourse")
+    public Result deleteCourse(Course course){
+        System.out.println(course);
         Result result = new Result();
         try {
-            if (classManageService.deleteClass(aclass) > 0) {
+            if (courseManageService.deleteCourse(course) > 0) {
                 result.setCode(200);
                 result.setMsg("删除成功");
             } else {
@@ -72,11 +75,11 @@ public class ClassManageController {
         }
         return result;
     }
-    @RequestMapping(value = "/addClass",method = RequestMethod.POST)
-    public Result addStudent(Class aclass){
+    @RequestMapping(value = "/addCourse",method = RequestMethod.POST)
+    public Result addStudent(Course course){
         Result result = new Result();
         try {
-            if (classManageService.addClass(aclass) > 0) {
+            if (courseManageService.addCourse(course) > 0) {
                 result.setCode(200);
                 result.setMsg("添加成功");
             } else {
@@ -89,12 +92,12 @@ public class ClassManageController {
         }
         return result;
     }
-    @RequestMapping(value = "/updateClass",method = RequestMethod.POST)
-    public Result updateClass(Class aclass){
-        System.out.println("updatestudents======="+aclass);
+    @RequestMapping(value = "/updateCourse",method = RequestMethod.POST)
+    public Result updateClass(Course course){
+        System.out.println("updatestudents======="+course);
         Result result = new Result();
         try {
-            if (classManageService.updateClass(aclass) > 0) {
+            if (courseManageService.updateCourse(course) > 0) {
                 result.setCode(200);
                 result.setMsg("修改成功");
             } else {
@@ -107,4 +110,5 @@ public class ClassManageController {
         }
         return result;
     }
+
 }

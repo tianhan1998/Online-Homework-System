@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.j2.onlinehomeworksystem.mapper.ICourseManageDaoMapper">
+    <select id="selectAllCourse" resultType="Course">
+        select * from course
+    </select>
+
+    <select id="selectCourseById" resultType="Course">
+        select * from course where cid=#{cid}
+    </select>
+    <delete id="deleteCourse">
+        delete from course where cid=#{cid}
+    </delete>
+
+    <update id="updateCourse" parameterType="Course">
+        update course set cname=#{cname},hour=#{hour},credit=#{credit} where cid=#{cid}
+    </update>
+    <insert id="addCourse" parameterType="Course">
+        insert into course(cname, hour, credit) values(#{cname},#{hour},#{credit})
+    </insert>
+</mapper>

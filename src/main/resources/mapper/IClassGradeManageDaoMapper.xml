@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.j2.onlinehomeworksystem.mapper.IClassGradeManageDaoMapper">
+    <select id="selectAllClassGrade" resultType="ClassGrade">
+        select * from c_grade
+    </select>
+
+    <select id="selectOneClassGrade" resultType="ClassGrade">
+        select * from c_grade where classid=#{classid}
+    </select>
+
+    <insert id="classGradeCompute">
+        insert into c_grade(classid,classname,ugrade,uavgrade,fgrade,favgrade,tgrade,tavgrade) select class.classid,class.classname,SUM(p_grade.ugrade),avg(p_grade.ugrade),SUM(p_grade.fgrade),avg(p_grade.fgrade),SUM(p_grade.tgrade),avg(p_grade.tgrade) from class,p_grade where class.classname=p_grade.classname group by classid;
+    </insert>
+
+    <delete id="deleteAllClassGrade">
+        delete from c_grade where 1=1
+    </delete>
+
+</mapper>

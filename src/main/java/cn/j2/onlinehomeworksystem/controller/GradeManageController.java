@@ -17,7 +17,7 @@ public class GradeManageController {
     @Autowired
     private IGradeManageService gradeManageService;
 
-    @RequestMapping("/addGradeInfo.do")
+    @RequestMapping("/addGradeInfo")
     public Result addGradeInfo(Grade grade){
         Result result = new Result();
         if(gradeManageService.addGradeInfo(grade)>0){
@@ -31,7 +31,7 @@ public class GradeManageController {
 
         return result;
     }
-    @RequestMapping("/deleteGradeInfo.do")
+    @RequestMapping("/deleteGradeInfo")
     public Result deleteGradeInfo(@Param("sid") Integer sid, String cname){
         System.out.println("sid的值是：---" + sid);
         System.out.println("cname的值是：---" + cname );
@@ -46,7 +46,7 @@ public class GradeManageController {
         return result;
     }
 
-    @RequestMapping("/selectGradeInfo.do")
+    @RequestMapping("/selectGradeInfo")
     public Result selectGradeInfo(Integer sid, String cname, Double minUGrade, Double maxUGrade, Double minFGrade, Double maxFGrade, Double minTGrade, Double maxTGrade, HttpSession session){
         Result result = new Result();
         List<Grade> gradeList = gradeManageService.selectGradeInfo(sid,cname,minUGrade,maxUGrade,minFGrade,maxFGrade,minTGrade,maxTGrade);

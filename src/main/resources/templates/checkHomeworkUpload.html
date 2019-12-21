@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Veltrix - Responsive Bootstrap 4 Admin Dashboard</title>
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link href="plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+        <!-- Dropzone css -->
+        <link href="plugins/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css">
+
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/icons.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+
+        <!-- Navigation Bar-->
+        <header id="topnav">
+            <div class="topbar-main">
+                <div class="container-fluid">
+
+                    <div class="menu-extras topbar-custom">
+
+                        <ul class="navbar-right list-inline float-right mb-0">
+
+                            <!-- full screen -->
+                            <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                <a class="nav-link" href="#" id="btn-fullscreen">
+                                    <i class="ion ion-md-qr-scanner noti-icon"></i>
+                                </a>
+                            </li>
+
+
+                            <li class="dropdown notification-list list-inline-item">
+                                <div class="dropdown notification-list nav-pro-img">
+                                    <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <img src="images/users/user-4.jpg" alt="user" class="rounded-circle">
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item list-inline-item">
+                                <!-- Mobile menu toggle-->
+                                <a class="navbar-toggle nav-link">
+                                    <div class="lines">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <!-- End mobile menu toggle-->
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- end menu-extras -->
+
+                    <div class="clearfix"></div>
+
+                </div> <!-- end container -->
+            </div>
+            <!-- end topbar-main -->
+
+
+            <!-- MENU Start -->
+            <div class="navbar-custom">
+                <div class="container-fluid">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
+
+                            <li class="has-submenu">
+                                <a href="/OHS/"><i class="ion ion-md-speedometer"></i>Dashboard</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="ion ion-md-options"></i>信息查询 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="#">学生信息</a>
+                                        <ul class="submenu">
+                                            <li><a href="/OHS/selectAllStudent">查询所有学生信息</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-submenu">
+                                        <a href="#">班级信息</a>
+                                        <ul class="submenu">
+                                            <li><a href="/OHS/selectAllClass">查询所有班级信息</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-submenu">
+                                        <a href="#">课程信息</a>
+                                        <ul class="submenu">
+                                            <li><a href="/OHS/selectAllCourse">查询所有课程信息</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#"><i class="ion ion-md-options"></i>成绩 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/OHS/selectPersonGrade">查询成绩</a></li>
+                                    <li><a href="/OHS/selectAllClassGrade">查询班级总成绩</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#"><i class="ion ion-md-options"></i>上传系统 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="#">作业</a>
+                                        <ul class="submenu">
+                                            <li><a href="/OHS/uploadHomework">作业提交系统 </a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-submenu">
+                                        <a href="#">查重</a>
+                                        <ul class="submenu">
+                                            <li><a href="/OHS/checkUploadHomework">作业查重系统</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- End navigation menu -->
+                    </div> <!-- end #navigation -->
+                </div> <!-- end container -->
+            </div> <!-- end navbar-custom -->
+        </header>
+        <!-- End Navigation Bar-->
+
+        <!-- page wrapper start -->
+        <div class="wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="mt-0 header-title">查重作业上传区</h4>
+
+                                <div class="m-b-30">
+                                    <form action="/OHS/checkHomeworkFileUpLoad" id="form1" method="post" class="dropzone" enctype="multipart/form-data">
+                                        <div class="fallback">
+                                            <input id="myfile" name="file" type="file">
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="text-center m-t-15">
+                                    <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">上传作业</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+                
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- page wrapper end -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        2019 © Veltrix <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+    
+
+        <!-- jQuery  -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.slimscroll.js"></script>
+        <script src="js/waves.min.js"></script>
+
+        <!-- Dropzone js -->
+        <script src="plugins/dropzone/dist/dropzone.js"></script>
+
+        <!-- App js -->
+        <script src="js/app.js"></script>
+        <script src="plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="pages/sweet-alert.init.js"></script>
+        <script>
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger mr-2'
+                },
+                buttonsStyling: false,
+            });
+            $("#form1").dropzone({
+                url: "fileUpLoad", //必须填写
+                method: "post",  //也可用put
+                paramName: "file", //默认为file
+                maxFiles: 10,//一次性上传的文件数量上限
+                maxFilesize: 20, //MB
+                acceptedFiles: ".docx", //上传的类型
+                previewsContainer: "#adds", //显示的容器
+                parallelUploads: 3,
+                dictMaxFilesExceeded: "您最多只能上传10个文件！",
+                dictResponseError: '文件上传失败!',
+                dictInvalidFileType: "你不能上传该类型文件,文件类型只能是.docx。",
+                dictFallbackMessage: "浏览器不受支持",
+                dictFileTooBig: "文件过大上传文件最大支持.",
+                previewTemplate: document.querySelector('#preview-template').innerHTML,//设置显示模板
+                init: function () {
+                    this.on("addedfile", function (file) {
+                        //上传文件时触发的事件
+                    });
+                    this.on("queuecomplete", function (file) {
+                        console.log(file);
+                        if($("#code").val()!=200){
+                            swalWithBootstrapButtons.fire(
+                                '上传失败',
+                                $("#msg").val(),
+                                'error'
+                            );
+                        }else{
+                            Swal.fire({
+                                position: 'top-end',
+                                type: 'success',
+                                title: '上传成功',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                    this.on("removedfile", function (file) {
+                        //删除文件时触发的方法
+                    });
+                }
+            });
+        </script>
+    </body>
+
+</html>

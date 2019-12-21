@@ -9,6 +9,7 @@
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
         <meta content="Themesbrand" name="author" />
         <link rel="shortcut icon" href="images/favicon.ico">
+        <link href="plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
 
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/icons.css" rel="stylesheet" type="text/css">
@@ -23,21 +24,18 @@
                 <div class="topbar-main">
                     <div class="container-fluid">
 
-
                         <div class="menu-extras topbar-custom">
 
                             <ul class="navbar-right list-inline float-right mb-0">
 
-        
-
-        
                                 <!-- full screen -->
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link" href="#" id="btn-fullscreen">
                                         <i class="ion ion-md-qr-scanner noti-icon"></i>
                                     </a>
                                 </li>
-        
+
+
                                 <li class="dropdown notification-list list-inline-item">
                                     <div class="dropdown notification-list nav-pro-img">
                                         <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -50,7 +48,7 @@
                                     </div>
                                 </li>
 
-            
+
                                 <li class="menu-item list-inline-item">
                                     <!-- Mobile menu toggle-->
                                     <a class="navbar-toggle nav-link">
@@ -74,7 +72,6 @@
                 <!-- end topbar-main -->
 
 
-
                 <!-- MENU Start -->
                 <div class="navbar-custom">
                     <div class="container-fluid">
@@ -92,22 +89,19 @@
                                         <li class="has-submenu">
                                             <a href="#">学生信息</a>
                                             <ul class="submenu">
-                                                <li><a href="form-elements.html">查询所有学生信息</a></li>
-                                                <li><a href="form-elements.html">增加学生信息</a></li>
+                                                <li><a href="/OHS/selectAllStudent">查询所有学生信息</a></li>
                                             </ul>
                                         </li>
                                         <li class="has-submenu">
                                             <a href="#">班级信息</a>
                                             <ul class="submenu">
-                                                <li><a href="form-elements.html">查询所有班级信息</a></li>
-                                                <li><a href="form-elements.html">增加班级信息</a></li>
+                                                <li><a href="/OHS/selectAllClass">查询所有班级信息</a></li>
                                             </ul>
                                         </li>
                                         <li class="has-submenu">
                                             <a href="#">课程信息</a>
                                             <ul class="submenu">
-                                                <li><a href="form-elements.html">查询所有课程信息</a></li>
-                                                <li><a href="form-elements.html">增加课程信息</a></li>
+                                                <li><a href="/OHS/selectAllCourse">查询所有课程信息</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -115,8 +109,8 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="ion ion-md-options"></i>成绩 <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
-                                        <li><a href="form-elements.html">查询个人成绩</a></li>
-                                        <li><a href="form-validation.html">查询班级成绩</a></li>
+                                        <li><a href="/OHS/selectPersonGrade">查询成绩</a></li>
+                                        <li><a href="/OHS/selectAllClassGrade">查询班级总成绩</a></li>
                                     </ul>
                                 </li>
                                 <li class="has-submenu">
@@ -125,13 +119,13 @@
                                         <li class="has-submenu">
                                             <a href="#">作业</a>
                                             <ul class="submenu">
-                                                <li><a href="form-elements.html">作业提交系统 </a></li>
+                                                <li><a href="/OHS/uploadHomework">作业提交系统 </a></li>
                                             </ul>
                                         </li>
                                         <li class="has-submenu">
                                             <a href="#">查重</a>
                                             <ul class="submenu">
-                                                <li><a href="form-elements.html">作业查重系统</a></li>
+                                                <li><a href="/OHS/checkUploadHomework">作业查重系统</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -161,22 +155,12 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="mt-0 header-title">Default Datatable</h4>
-                                <p class="text-muted mb-4">DataTables has most features enabled by
-                                    default, so all you need to do to use it with your own tables is to call
-                                    the construction function: <code>$().DataTable();</code>.
-                                </p>
+                                <h4 class="mt-0 header-title">所有班级列表</h4>
+                                <button onclick="insertClass()" type="button" class="btn btn-outline-secondary waves-effect">添加班级</button>
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
-                                    <tr>
-                                        <th>学号</th>
-                                        <th>姓名</th>
-                                        <th>性别</th>
-                                        <th>所在院校</th>
-                                        <th>行政班级</th>
-                                        <th>手机号</th>
-                                    </tr>
                                     </thead>
+                                    <tbody></tbody>
                                 </table>
 
                             </div>
@@ -226,21 +210,76 @@
         <script src="pages/datatables.init.js"></script>
         <!-- App js -->
         <script src="js/app.js"></script>
+        <script src="plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="pages/sweet-alert.init.js"></script>
     <script>
+        function insertClass(){
+            window.open("/OHS/insertClass",'','height=800, width=768, top=600, left=600, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+        }
+        function updateClass(id){
+            window.open("/OHS/updateClass?classid="+id+"",'','height=800, width=768, top=600, left=600, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+        }
+        function deleteClass(id){
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger mr-2'
+                },
+                buttonsStyling: false,
+            });
+            Swal.fire({
+                title: "你确定吗?",
+                text: "此操作无法回退",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#47bd9a",
+                cancelButtonColor: "#e74c5e",
+                confirmButtonText: "删除"
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url:"class/deleteClass",
+                        type:"get",
+                        datatype:"json",
+                        data:{"classid":id},
+                        success:function(results){
+                            if(results.code==200) {
+                                Swal.fire("已删除!", "此班级已被删除", "success").then(function(result){
+                                    if(result.value){
+                                        location.reload();
+                                    }
+                                });
+                            }else{
+                                swalWithBootstrapButtons.fire(
+                                    '删除失败',
+                                    results.msg,
+                                    'error'
+                                );
+                            }
+                        },
+                        error:function(result){
+                            console.log(result);
+                        }
+                    });
+                }
+            });
+
+        }
         // $(function () {
             $("#datatable").DataTable({
                 "processing":true,
                 "searching":true,
                 "ajax":{
-                  "url":"student/selectStudent",
+                  "url":"class/selectAllClass",
                 },
                 "columns":[
-                    { "data": "sid" },
-                    { "data": "sname" },
-                    { "data": "sex" },
-                    { "data": "college" },
-                    { "data": "classname" },
-                    { "data": "number" }
+                    { "data": "classid",title:"班级号" },
+                    { "data": "classname",title:"班级名称" },
+                    {"data":function(obj){
+                            var html="<a id='delete-warning' onclick=deleteClass("+obj.classid+") href='#'><i class=\"mdi mdi-delete-sweep-outline\"></i></a>";
+                            var html1="<a onclick='updateClass("+obj.classid+")' href='#'><i class='mdi mdi-update'></i> </a>";
+                            return html+html1;
+                        },title:"操作"}
                 ]
             });
         //     $.ajax({

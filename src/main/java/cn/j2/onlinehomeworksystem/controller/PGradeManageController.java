@@ -16,9 +16,10 @@ public class PGradeManageController {
     @Autowired
     private IPGradeManageService pGradeManageService;
 
-    @RequestMapping("/selectPGrade.do")
+    @RequestMapping("/selectPGrade")
     public Result selectPGrade(Students student, String cname, Double minUGrade, Double maxUGrade, Double minFGrade, Double maxFGrade, Double minTGrade, Double maxTGrade){
         Result result = new Result();
+        System.out.println(student);
         try{
             List<PGrade> pGradeList = pGradeManageService.selectPGrade(student,cname,minUGrade,maxUGrade,minFGrade,maxFGrade,minTGrade,maxTGrade);
             if(pGradeList!=null){

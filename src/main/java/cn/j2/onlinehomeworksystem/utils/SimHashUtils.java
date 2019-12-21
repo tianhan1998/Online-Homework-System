@@ -153,25 +153,56 @@ public class SimHashUtils {
         return 1.0D - i / (double)this.hashbits;
     }
 
-    public static void test(String[] args) {
-        String s1 = "这是另一个串。";
-        String s2 = "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试。测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试，测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试。";
-        String s3 = "测试测试测试测试测试测试测试测试测试测试，测试测试测试测试测试测试测试测试测试测试测试。";
-        String s4 = "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试。";
-        long l3 = System.currentTimeMillis();
+    public static void test(String target) {
+        String s1 = "在线学习查重系统设计与实现\n" +
+                "\n" +
+                "课程：9门课程，依次是：毛中特，计算机网络，Java EE视图层框架技术，Oracle数据库，软件前沿技术，软件工程导论，Java EE持久层框架技术，媒体设计方法学，企业项目实战\n" +
+                "\n" +
+                "功能：代码查重，在线提交作业，学生信息管理，班级学习信息统计，个人学习信息统计等\n" +
+                "\n" +
+                "\n" +
+                "学生信息管理：字段：学号，姓名，性别，所在院校，行政班级，手机号（如17java1,17java2,17java3）\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "课程信息：字段：课程号，课程名称，课程学时，课程学分\n" +
+                "\n" +
+                "\n" +
+                "课程成绩：字段：学号，姓名，课程名称，平时成绩，期末试卷成绩，总成绩\n" +
+                "\n" +
+                "班级信息：字段：班级编号，行政班级\n" +
+                "\n" +
+                "\n" +
+                "个人学习信息统计:字段：学号，姓名，性别，行政班级，课程名称，课程成绩（平时成绩，期末试卷成绩，总成绩）\n" +
+                "\n" +
+                "班级学习信息统计：字段：班级编号，行政班级，平时成绩（总分，平均分），期末试卷成绩（总分，平均分），总成绩（总分，平均分）\n" +
+                "\n" +
+                "在线提交作业：\n" +
+                "\n" +
+                "代码查重：V1.0 300个字的查重，不包含标点符号。\n" +
+                "\n" +
+                "          V2.0 对Word文档内容的查重。\n" +
+                "学号\t姓名\t性别\t所在院校\t行政班级\t手机号\n" +
+                "1701xxx\t\t\t\t17java1\t\n" +
+                "1702xxx\t\t\t\t17java2\t\n" +
+                "1703xxx\t\t\t\t17java3\t\n" +
+                "\n" +
+                "课程号\t课程名称\t课程学时\t课程学分\n" +
+                "\n" +
+                "学号\t姓名\t课程名称\t平时成绩\t期末试卷成绩\t总成绩\n" +
+                "\n" +
+                "班级编号\t行政班级\n" +
+                "1701\t17java1\n" +
+                "1702\t17java2\n" +
+                "1703\t17java3\n" +
+                "\n" +
+                "学号\t姓名\t性别\t行政班级\t课程名称\t平时成绩\t期末试卷成绩\t总成绩\n" +
+                "\n" +
+                "班级编号\t行政班级\t平时成绩总分\t平时成绩平均分\t期末试卷成绩总分\t期末试卷成绩平均分\t总成绩总分\t总成绩平均分";
         SimHashUtils hash1 = new SimHashUtils(s1, 64);
-        SimHashUtils hash2 = new SimHashUtils(s2, 64);
-        SimHashUtils hash3 = new SimHashUtils(s3, 64);
-        SimHashUtils hash4 = new SimHashUtils(s4, 64);
+        SimHashUtils hash2 = new SimHashUtils(target, 64);
         System.out.println("======================================");
-        System.out.println(hash1.hammingDistance(hash2));
-        System.out.println(hash2.hammingDistance(hash3));
-        System.out.println(hash4.hammingDistance(hash3));
-        System.out.println(hash1.getSemblance(hash3));
-        System.out.println(hash2.getSemblance(hash3));
-        System.out.println(hash3.getSemblance(hash4));
-        long l4 = System.currentTimeMillis();
-        System.out.println(l4 - l3);
-        System.out.println("======================================");
+        System.out.println("海明距离"+hash1.hammingDistance(hash2));
+        System.out.println("相似度"+hash1.getSemblance(hash2));
     }
 }
